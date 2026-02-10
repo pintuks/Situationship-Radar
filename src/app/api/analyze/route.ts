@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createFastRouterCompletion } from "@/lib/fastrouter";
+import { parseJsonFromCompletion } from "@/lib/json";
 
 interface AnalyzePayload {
   text?: string;
@@ -56,7 +57,7 @@ export async function POST(request: Request) {
       },
     ]);
 
-    const parsed = JSON.parse(completion) as Partial<AnalyzeResponse>;
+    const parsed = parseJsonFromCompletion(completion) as Partial<AnalyzeResponse>;
     const safeScore = Math.max(0, Math.min(100, Number(parsed.score) || 0));
     const safeSignals = normalizeSignals((parsed.signals ?? []) as Signal[]);
 
