@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createFastRouterCompletion } from "@/lib/fastrouter";
+import { parseJsonFromCompletion } from "@/lib/json";
 
 interface GeneratePayload {
   text?: string;
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
       },
     ]);
 
-    const parsed = JSON.parse(completion) as Partial<GenerateResponse>;
+    const parsed = parseJsonFromCompletion(completion) as Partial<GenerateResponse>;
     const memeInsights = normalizeList((parsed.meme_insights ?? []) as string[], 3);
     const replySuggestions = normalizeList((parsed.reply_suggestions ?? []) as string[], 6);
 
