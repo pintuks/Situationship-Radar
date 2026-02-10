@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-slate-950 text-slate-900 antialiased;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12vh) scale(0.95);
+  }
+  20% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-85vh) scale(1.12);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x-start), -8px) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x-end), 110px) rotate(450deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes pulseBar {
+  0%,
+  100% {
+    width: 24%;
+  }
+  50% {
+    width: 88%;
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-gradient {
+  animation: gradientShift 16s ease infinite;
+  background-size: 220% 220%;
+}
+
+.animate-float-up {
+  animation: floatUp var(--duration, 13s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-confetti {
+  animation: confettiFall var(--duration, 900ms) ease-out forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shimmer 1.4s linear infinite;
+}
+
+.animate-pulse-bar {
+  animation: pulseBar 1.3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 1.2s linear infinite;
+}
+
+.btn-lift {
+  @apply transition-transform duration-150 hover:-translate-y-0.5 active:translate-y-[1px];
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-pop-in {
+  animation: popIn 340ms ease-out;
+}
