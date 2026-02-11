@@ -6,6 +6,7 @@ export function Footer() {
       <Separator className="bg-white/40" />
       <p>For fun + self-awareness only. Not legal, clinical, or relationship-professional advice.</p>
       <p>We don&apos;t permanently store your chat text. Communicate clearly, hydrate generously.</p>
+      <p>Built by Maverick, built on TRAE.</p>
     </footer>
   );
 }
